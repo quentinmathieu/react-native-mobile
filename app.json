@@ -4,13 +4,13 @@
     "slug": "react-native-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/icon.svg",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/icon.svg",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FEF9B0"
     },
     "ios": {
       "supportsTablet": true
@@ -33,4 +33,5 @@
       "typedRoutes": true
     }
   }
+  
 }
