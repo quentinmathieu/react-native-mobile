@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import {FlatList, View, StyleSheet} from 'react-native';
+import { Link } from 'expo-router';
+
 import axios from 'axios';
 
-const baseUrl = 'https://sf-ecommerce.maqu6194.odns.fr/api/products';
 
 type Product = {
   id: string;
@@ -19,7 +20,6 @@ const App = () => {
           `https://sf-ecommerce.maqu6194.odns.fr/api/products`
         );
       console.log(response.data["hydra:member"]);
-      // const json = await response.json();
       setData(response.data["hydra:member"]);
 
     } catch (error) {
@@ -40,14 +40,25 @@ const App = () => {
           data={data}
           keyExtractor={({id}) => id}
           renderItem={({item}) => (
-            <Text>
+            <Link style={styles.link} href={{
+              pathname: '/details/[id]',
+              params: { id: item.id },
+            }}>
               {item.name}
-            </Text>
+            </Link>
           )}
         />
       )}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  link: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center'
+  },})
 
 export default App;
