@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, View, StyleSheet} from 'react-native';
+import {FlatList, View, StyleSheet, ActivityIndicator} from 'react-native';
 import { Link } from 'expo-router';
 
 import axios from 'axios';
@@ -21,12 +21,12 @@ const App = () => {
         );
       console.log(response.data["hydra:member"]);
       setData(response.data["hydra:member"]);
+      setLoading(false);
 
     } catch (error) {
+
       console.error(error);
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   useEffect(() => {
@@ -35,7 +35,8 @@ const App = () => {
 
   return (
     <View style={{flex: 1, padding: 24}}>
-      {(
+      { isLoading ? (<ActivityIndicator size="large" color="rgb(244, 81, 30)" />) : ("")}
+       {data ? (
         <FlatList
           data={data}
           keyExtractor={({id}) => id}
@@ -48,7 +49,8 @@ const App = () => {
             </Link>
           )}
         />
-      )}
+    ) :  (<ActivityIndicator size="large" color="rgb(244, 81, 30)" />
+    ) }
     </View>
   );
 };
