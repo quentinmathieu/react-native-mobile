@@ -36,7 +36,7 @@ const App = () => {
   return (
     <View style={{flex: 1, padding: 24}}>
       { isLoading ? (<ActivityIndicator size="large" color="rgb(244, 81, 30)" />) : ("")}
-       {data ? (
+      
         <FlatList
           data={data}
           keyExtractor={({id}) => id}
@@ -49,8 +49,7 @@ const App = () => {
             </Link>
           )}
         />
-    ) :  (<ActivityIndicator size="large" color="rgb(244, 81, 30)" />
-    ) }
+    
     </View>
   );
 };
