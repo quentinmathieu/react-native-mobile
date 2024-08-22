@@ -23,7 +23,7 @@ export default function DetailsScreen(){
   const getProduct = async () => {
     try {
       const response = await axios.get(
-          `https://sf-ecommerce.maqu6194.odns.fr/api/products/${id}`
+          `${process.env.EXPO_PUBLIC_API_URL}/${id}`
         );
       const product : Product = {
         id: response.data.id,

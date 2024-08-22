@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FlatList, View, StyleSheet, ActivityIndicator} from 'react-native';
 import { Link } from 'expo-router';
 
+
 import axios from 'axios';
 
 
@@ -16,9 +17,7 @@ const App = () => {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get(
-          `https://sf-ecommerce.maqu6194.odns.fr/api/products`
-        );
+      const response = await axios.get(process.env.EXPO_PUBLIC_API_URL);
       console.log(response.data["hydra:member"]);
       setData(response.data["hydra:member"]);
       setLoading(false);
