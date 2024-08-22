@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import { useLocalSearchParams } from 'expo-router';
-import { redirect } from 'react-router-dom';
+import { Redirect, useLocalSearchParams } from 'expo-router';
 
 
 import axios from 'axios';
@@ -35,10 +34,15 @@ export default function DetailsScreen(){
       }
       setData(product);
     } catch (error) {
+      const product : Product = {
+        id: -1,
+        name: "",
+        price: 0,
+        discount: "",
+        salesPromotion: 0,
+      }
+      setData(product);
       console.error(error);
-
-      // Doesnt work T^T
-      return redirect("/settings")
     }
   };
 
@@ -49,6 +53,7 @@ export default function DetailsScreen(){
   
   return (
     <View style={styles.container}>
+      { data != undefined && data.id == -1? (<Redirect href={"/(home)/"}></Redirect>) : ("")}
       {data ? (
         <>
           <Text>Details of : {data.name}</Text>
